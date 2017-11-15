@@ -1,0 +1,17 @@
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\obj\iPhone\Debug\ibtool\_BundleResourceWithLogicalName.items
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\obj\iPhone\Debug\actool\_PartialAppManifest.items
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\obj\iPhone\Debug\actool\_BundleResourceWithLogicalName.items
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\obj\iPhone\Debug\optimized\Entitlements.plist
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\obj\iPhone\Debug\optimized\
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\obj\iPhone\Debug\AppTest.csproj.CoreCompileInputs.cache
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\AppTest.exe
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\AppTest.pdb
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\SQLite-net.dll
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\SQLitePCLRaw.batteries_green.dll
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\SQLitePCLRaw.batteries_v2.dll
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\SQLitePCLRaw.core.dll
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\SQLitePCLRaw.provider.sqlite3.dll
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\SQLite-net.xml
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\bin\iPhone\Debug\SQLite-net.dll.mdb
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\obj\iPhone\Debug\AppTest.exe
+D:\MyProjects\ExampleUniversalProject\AppTest\AppTest\obj\iPhone\Debug\AppTest.pdb
