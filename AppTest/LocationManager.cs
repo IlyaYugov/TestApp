@@ -1,33 +1,59 @@
-﻿using CoreLocation;
+﻿using System;
+using CoreLocation;
+using Foundation;
 using UIKit;
 
 namespace AppTest
 {
     public class LocationManager
     {
-        protected CLLocationManager locMgr;
+        public static Action<double,double,DateTime> LocationTracked;
+        private static CLLocationManager _locMgr;
 
-        public LocationManager()
+        private LocationManager()
         {
-            this.locMgr = new CLLocationManager();
-            this.locMgr.PausesLocationUpdatesAutomatically = false;
-
-            // iOS 8 has additional permissions requirements
-            if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
-            {
-                locMgr.RequestAlwaysAuthorization(); // works in background
-                //locMgr.RequestWhenInUseAuthorization (); // only in foreground
-            }
-
-            if (UIDevice.CurrentDevice.CheckSystemVersion(9, 0))
-            {
-                locMgr.AllowsBackgroundLocationUpdates = true;
-            }
         }
 
-        public CLLocationManager LocMgr
+        public static void StartMonitoring()
         {
-            get { return this.locMgr; }
+            if (CLLocationManager.Status == CLAuthorizationStatus.NotDetermined)
+            {
+                _locMgr.RequestAlwaysAuthorization();
+            }
+            if (CLLocationManager.Status == CLAuthorizationStatus.Denied)
+            {
+                Console.WriteLine("Включите геолокацию вручную");
+            }
+
+            _locMgr.StartUpdatingLocation();
+        }
+
+        public static void StartGeolocationUpdate()
+        {
+            if (_locMgr == null)
+            {
+                _locMgr = new CLLocationManager
+                {
+                    PausesLocationUpdatesAutomatically = false,
+                    AllowsBackgroundLocationUpdates = true
+                };
+            }
+
+            _locMgr.LocationsUpdated += (sender, args) =>
+            {
+                _locMgr.StopUpdatingLocation();
+                LocationTracked(_locMgr.Location.Coordinate.Longitude, _locMgr.Location.Coordinate.Latitude, (DateTime)_locMgr.Location.Timestamp);
+            };
+
+            _locMgr.AuthorizationChanged += (sender, args) =>
+            {
+                if (CLLocationManager.Status != CLAuthorizationStatus.AuthorizedAlways)
+                {
+                    Console.WriteLine("Включите геолокацию вручную");
+                }
+            };
+            StartMonitoring();
+
         }
     }
 }

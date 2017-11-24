@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>AppTest</string>
+	<string>AppTest2</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.FirstBit.JeansTestApp</string>
 	<key>CFBundleShortVersionString</key>
@@ -39,17 +39,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
 	</array>
-	
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>FakeApp tracks your position to search nearby restaurants.</string>
-	
-	<key>NSLocationAlwaysInUsageDescription</key>
-	<string>FakeApp tracks your position to search nearby restaurants.</string>
-	
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Приложение Jeans следит за вами :)</string>
 </dict>
 </plist>

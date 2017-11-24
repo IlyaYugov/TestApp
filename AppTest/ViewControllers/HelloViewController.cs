@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using CoreGraphics;
 using CoreLocation;
 using UIKit;
@@ -9,13 +8,13 @@ namespace AppTest.ViewControllers
     public class HelloViewController  : UIViewController
     {
         private UIButton _btn;
-        private CLLocationManager mgr;
+        private LocationManager mgr;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
-            Title = "Start View";
+            Title = "StartTimerForLocationTracking View";
             _btn = new UIButton()
             {
                 Frame = new CGRect(0, View.Frame.Height/2.0-50, View.Frame.Width, 100),
@@ -31,33 +30,37 @@ namespace AppTest.ViewControllers
             View.AddSubview(_btn);
 
             View.BackgroundColor = UIColor.Green;
-
-            mgr = new CLLocationManager();
-            mgr.RequestAlwaysAuthorization();
-            mgr.RequestWhenInUseAuthorization();
-
         }
 
         private void BtnOnTouchUpInside(object sender, EventArgs eventArgs)
         {
-            //var btn = (UIButton)sender;
+            LocationManager.StartGeolocationUpdate();
+            TrackingTimer timer = new TrackingTimer();
+            timer.StartTimerForLocationTracking();
 
-            //btn.SetTitle("Button ck", UIControlState.Normal);
-            mgr.StartUpdatingLocation();
-            mgr.StopUpdatingLocation();
+            LocationManager.LocationTracked += (d, d1, arg3) =>
+            {
+                timer.Stop();
+                if (d != 0 && d1 != 0)
+                {
+                    InsertToDataBase();
+                }
+            };
 
-            //mgr.RequestAlwaysAuthorization(); //to access user's location in the background
-            //mgr.RequestWhenInUseAuthorization(); //to access user's location when the app is in use.
-            //mgr.StartMonitoringSignificantLocationChanges();
-            //mgr.StopMonitoringSignificantLocationChanges();
+            //mgr.StartMonitoring();
+            //if (!mgr.IsActiveStatus())
+            //{
+            //    Title = "Включить геолокацию";
+            //    return;
+            //}          
+            //_btn.SetTitle(mgr.Time.ToString(),UIControlState.Normal);
+            //Title = mgr.Coordinate.ToString();
 
-            var location = mgr.Location;
-            //mgr.AllowsBackgroundLocationUpdates = true;
+            //var t = mgr.Coordinate.Latitude;
+            //var t = mgr.Coordinate.Longitude;
 
-
-            ExampleTableViewController viewController = new ExampleTableViewController();
-
-            NavigationController.PushViewController(viewController,true);
+            //ExampleTableViewController viewController = new ExampleTableViewController();
+            //NavigationController.PushViewController(viewController,true);
         }
 
         public override void ViewWillAppear(bool animated)
@@ -65,25 +68,6 @@ namespace AppTest.ViewControllers
             base.ViewWillAppear(animated);
 
             _btn.TouchUpInside += BtnOnTouchUpInside;
-
-            mgr.LocationsUpdated += (sender, e) =>
-            {
-                foreach (var loc in e.Locations)
-                {
-                    Console.WriteLine(loc);
-                }
-            };
-
-            if (CLLocationManager.LocationServicesEnabled)
-            {
-                mgr.StartMonitoringSignificantLocationChanges();
-            }
-            else
-            {
-                Console.WriteLine("Location services not enabled, please enable this in your Settings");
-            }
-
-            mgr.StopMonitoringSignificantLocationChanges();
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -91,6 +75,11 @@ namespace AppTest.ViewControllers
             base.ViewWillDisappear(animated);
 
             _btn.TouchUpInside -= BtnOnTouchUpInside;
+        }
+
+        private void InsertToDataBase()
+        {
+            
         }
 
     }

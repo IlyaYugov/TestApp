@@ -42,7 +42,7 @@ namespace AppTest.ViewControllers
 
             using (var connection = SQLLiteProvider.CreateConnection())
             {
-                tasks = connection.Table<Task>().Select(t => new TaskViewModel
+                tasks = connection.Table<TaskTable>().Select(t => new TaskViewModel
                 {
                     Date = t.Date,
                     Description =  t.Description,

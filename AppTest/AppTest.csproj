@@ -53,7 +53,7 @@
     <CodesignProvision>3fb6b488-9145-4cc4-9073-36bca9c7ee5b</CodesignProvision>
     <IOSDebugOverWiFi>False</IOSDebugOverWiFi>
     <IOSDebuggerPort>10000</IOSDebuggerPort>
-    <MtouchSdkVersion>10.3</MtouchSdkVersion>
+    <MtouchSdkVersion>11.1</MtouchSdkVersion>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchProfiling>True</MtouchProfiling>
     <MtouchFastDev>False</MtouchFastDev>
@@ -105,8 +105,14 @@
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BackgroundTaskHelper.cs" />
     <Compile Include="LocationManager.cs" />
+    <Compile Include="Tables\Coordinate.cs" />
+    <Compile Include="TrackingTimer.cs" />
     <Compile Include="ViewCells\CellFactory.cs" />
     <Compile Include="DeviceHardware.cs" />
     <Compile Include="Events.cs" />
@@ -115,9 +121,10 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="SQLLite\SQLLiteProvider.cs" />
     <Compile Include="Tables\Region.cs" />
-    <Compile Include="Tables\Task.cs" />
+    <Compile Include="Tables\TaskTable.cs" />
     <Compile Include="Tables\User.cs" />
     <Compile Include="ViewCells\TaskCell.cs" />
+    <Compile Include="ViewControllers\GeolocationViewController.cs" />
     <Compile Include="ViewSourses\TaskSource.cs" />
     <Compile Include="ViewControllers\TaskView.cs" />
     <Compile Include="ViewModels\TaskViewModel.cs" />

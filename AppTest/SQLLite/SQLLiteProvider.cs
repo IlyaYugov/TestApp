@@ -17,7 +17,8 @@ namespace AppTest
             {
                 connection.CreateTable<User>();
                 connection.CreateTable<Region>();
-                connection.CreateTable<Task>();
+                connection.CreateTable<TaskTable>();
+                connection.CreateTable<Coordinate>();
             }
         }
 
@@ -42,28 +43,28 @@ namespace AppTest
                     Name = "RegionVasek"
                 };
 
-                Task task1 = new Task
+                TaskTable task1 = new TaskTable
                 {
                     Date = DateTime.Now,
                     Description = "Srochno Iopt",
                     Name = "Вааажно"
                 };
 
-                Task task2 = new Task
+                TaskTable task2 = new TaskTable
                 {
                     Date = DateTime.Now,
                     Description = "Принеси",
                     Name = "Менее Вааажно"
                 };
 
-                Task task3 = new Task
+                TaskTable task3 = new TaskTable
                 {
                     Date = DateTime.Now,
                     Description = "Подай",
                     Name = "Более Вааажно"
                 };
 
-                Task task4 = new Task
+                TaskTable task4 = new TaskTable
                 {
                     Date = DateTime.Now,
                     Description = "Не мешай",
@@ -82,7 +83,7 @@ namespace AppTest
                     FullName = "Vasiya",
                     Name = "Vasek",
                     RegionID = connection.Table<Region>().Where(w => w.Name == "RegionVasek").Select(s => s.ID).First()
-                    //TaskID = connection.Table<Task>().Where(w => w.Name == "QWEasdzxc").Select(s => s.ID).First()
+                    //TaskID = connection.Table<TaskTable>().Where(w => w.Name == "QWEasdzxc").Select(s => s.ID).First()
                 };
                 connection.Insert(user1);
             }
